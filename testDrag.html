@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Designer</title>
+    <!-- <script src="js/jquery-3.1.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-beautify@1.14.0/js/lib/beautify-html.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space12">
+            <div class="layui-col-md1">
+                <div class="layui-card nav">
+                    <div class="layui-card-header">
+                        操作栏
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="drag-item" id="addInput" draggable="true">
+                            输入框
+                        </div>
+                        <div class="drag-item" id="addPwdInput" draggable="true">
+                            密码框
+                        </div>
+                        <div class="drag-item" id="addOption" draggable="true">
+                            选择框
+                        </div>
+                        <div class="drag-item" id="addCheckOption" draggable="true">
+                            复选框
+                        </div>
+                        <div class="drag-item" id="addCheckBox" draggable="true">
+                            开关
+                        </div>
+                        <div class="drag-item" id="addRadioBox" draggable="true">
+                            单选框
+                        </div>
+                        <div class="drag-item" id="addTextArea" draggable="true">
+                            文本域
+                        </div>
+                        <div class="drag-item" id="addSubmit" draggable="true">
+                            提交
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md7">
+                <div class="layui-card content" id="dropBox">
+                    <div class="layui-card-header">
+                        view
+                        <button class="layui-btn layui-btn-sm layui-btn-danger del-form" data-type="del"
+                            id="resetFormBtn"> <i class="layui-icon"></i></button>
+                    </div>
+                    <div class="layui-card-body" id="formBody">
+                        <form class="layui-form" id="viewForm" action="" onsubmit="return false">
+                            <div class="layui-form-item"><label class="layui-form-label">输入框</label>
+                                <div class="layui-input-block"><input type="text" name="xo6n" id="xo6n" required=""
+                                        lay-verify="required" placeholder="请输入输入框内容" autocomplete="off"
+                                        class="layui-input"></div>
+                            </div>
+                            <div class="layui-form-item"> <label class="layui-form-label">密码框</label>
+                                <div class="layui-input-block"> <input type="password" name="xo7n" id="xo7n" required=""
+                                        lay-verify="required" placeholder="请输入密码框内容" autocomplete="off"
+                                        class="layui-input"> </div>
+                            </div>
+                            <div class="layui-form-item"> <label class="layui-form-label">选择框</label>
+                                <div class="layui-input-block"> <select name="city" id="city" lay-verify="required">
+                                        <option value=""></option>    
+                                        <option value="0">北京</option>
+                                        <option value="1">上海</option>
+                                        <option value="2">广州</option>
+                                        <option value="3">深圳</option>
+                                        <option value="4">杭州</option>
+                                    </select>
+                                    <div class="layui-unselect layui-form-select">
+                                        <div class="layui-select-title"><input type="text" name="xo8n" id="xo8n"
+                                                placeholder="请选择" value="" readonly=""
+                                                class="layui-input layui-unselect"><i class="layui-edge"></i></div>
+                                        <dl class="layui-anim layui-anim-upbit">
+                                            <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                            <dd lay-value="0" class="">北京</dd>
+                                            <dd lay-value="1" class="">上海</dd>
+                                            <dd lay-value="2" class="">广州</dd>
+                                            <dd lay-value="3" class="">深圳</dd>
+                                            <dd lay-value="4" class="">杭州</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item"> <label class="layui-form-label">复选框</label>
+                                <div class="layui-input-block"> <input type="checkbox" name="gl27[]" id="gl27[]"
+                                        title="写作">
+                                    <div class="layui-unselect layui-form-checkbox"><span>写作</span><i
+                                            class="layui-icon layui-icon-ok"></i></div> <input type="checkbox"
+                                        name="gl27[]" title="阅读" checked="">
+                                    <div class="layui-unselect layui-form-checkbox layui-form-checked"><span>阅读</span><i
+                                            class="layui-icon layui-icon-ok"></i></div> <input type="checkbox"
+                                        name="gl27[]" title="发呆">
+                                    <div class="layui-unselect layui-form-checkbox"><span>发呆</span><i
+                                            class="layui-icon layui-icon-ok"></i></div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item"> <label class="layui-form-label">开关</label>
+                                <div class="layui-input-block"> <input type="checkbox" name="y96k" id="y96k"
+                                        lay-skin="switch">
+                                    <div class="layui-unselect layui-form-switch" lay-skin="_switch"><em></em><i></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item"> <label class="layui-form-label">单选框</label>
+                                <div class="layui-input-block"> <input type="radio" name="sqkqxt" value="男" title="男">
+                                    <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
+                                        <div>男</div>
+                                    </div> <input type="radio" name="sqkqxt" value="女" title="女" checked="">
+                                    <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            class="layui-anim layui-icon"></i>
+                                        <div>女</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text"> <label class="layui-form-label">文本域</label>
+                                <div class="layui-input-block"> <textarea name="iervi" id="iervi" placeholder="请输入内容"
+                                        class="layui-textarea"></textarea> </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block"> <button class="layui-btn" lay-submit=""
+                                        lay-filter="formDemo">立即提交</button> <button type="reset"
+                                        class="layui-btn layui-btn-primary">重置</button> </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <div class="layui-card content" id="operateBox">
+                    <div class="layui-card-header">
+                        操作栏
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form layui-form-pane" id="operateForm" action="" onsubmit="return false">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    html body {
+        background-color: #f2f2f2;
+    }
+
+    .layui-fluid {
+        margin: 10px;
+    }
+
+    .content {
+        min-height: 796px;
+    }
+
+    .content .layui-card-header:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav {
+        text-align: center;
+    }
+
+    .nav .layui-card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .code-show {
+        min-height: 454px;
+    }
+
+    .js-show {
+        min-height: 200px;
+    }
+
+    .dragging {
+        z-index: 9999;
+        opacity: 0.35;
+    }
+
+    .drag-item {
+        display: inline-block;
+        height: 38px;
+        line-height: 38px;
+        border: 1px solid transparent;
+        background-color: #009688;
+        padding: 0 18px;
+        color: #fff;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 2px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        width: 80px;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+
+    #dropBox {
+        /* opacity: 0.5; */
+        transition: opacity 0.3s linear;
+        /* border: 2px dashed #ccc; */
+    }
+
+    #dropBox.dragenter {
+        opacity: 1;
+        box-shadow: 0 0 10px #000;
+        transition: .3s ease-in-out;
+    }
+
+    #dropBox.dragover {
+        opacity: 1;
+        box-shadow: 0 0 10px #009688;
+        transition: .3s ease-in-out;
+    }
+
+    #viewForm .layui-form-item {
+        border: 1px dashed #fff;
+    }
+
+    #viewForm .layui-form-item.focus {
+        border: 1px dashed #009688;
+        transition: .3s ease-in-out;
+        cursor: move;
+    }
+
+    .layui-form-item.dragging {
+        transition-property: none;
+    }
+
+    #operateForm .layui-input-block {
+        left: 0;
+    }
+</style>
+<script src="js/jquery-ui.js"></script>
+<script src="js/config.js"></script>
+<script>
+    $(document).ready(function () {
+        var $dragItem = $(".drag-item");
+        var $dropBox = $("#dropBox");
+        //form-item添加点击事件
+        $('#viewForm').on('click', '.layui-form-item', function (e) {
+            var $this = $(this);
+            var pluginsPath = getLoadPath($this);
+            $('#operateForm').load(pluginsPath, function () {
+                $this.siblings().removeClass('focus');
+                $this.addClass('focus').trigger('getFocusData');
+            });
+        });
+        getFocusData();
+        $dragItem.on('click', function (e) {
+            var id = $(e.target).attr('id');
+            var html = list[id];
+            $('#viewForm').append(html);
+            var randName = randomId(5);
+
+            var pluginsPath = getLoadPath($('#viewForm .layui-form-item:last'));
+            $('#operateForm').load(pluginsPath, function () {
+                $('#viewForm .layui-input-block:last').children().attr({ 'id': randName, 'name': randName });
+                $('#viewForm .layui-form-item:last').siblings().removeClass('focus');
+                $('#viewForm .layui-form-item:last').addClass('focus').trigger('getFocusData');
+            });
+            renderForm();
+        });
+        Edit();
+        resetForm();
+        sortForm();
+    });
+
+    //重新渲染表单函数
+    function renderForm() {
+        layui.use('form', function () {
+            var form = layui.form; //高版本建议把括号去掉，有的低版本，需要加()
+            form.render();
+        });
+    }
+
+    //重制表单
+    function resetForm() {
+        $('#resetFormBtn').click(function () {
+            $('#viewForm .focus').remove();
+        })
+
+    }
+
+    //表单内容拖拽排序
+    function sortForm() {
+        $("#viewForm").sortable({
+            cursor: "move",
+            start: function (event, ui) {
+                // 在拖动开始时将透明度设置为0.5
+                ui.item.css({
+                    "opacity": 0.5,
+                    "transition-property": "none"
+                });
+            },
+            stop: function (event, ui) {
+                // 在拖动结束后将透明度还原为1
+                ui.item.css({
+                    "opacity": 1,
+                    "transition": ".3s ease-in-out"
+                });
+            }
+        });
+        $("#viewForm").disableSelection();
+    }
+
+    //序列化页面
+    function serializerHtml() {
+        var serializer = new XMLSerializer();
+        var formElement = document.querySelector('#viewForm');
+        var formHTML = formElement.outerHTML;
+        var beautifiedHTML = window.html_beautify(formHTML);
+        document.getElementById('codeText').value = beautifiedHTML;
+    }
+
+
+    //监听focus
+    function getFocusData() {
+        $('#viewForm').on('getFocusData', '.layui-form-item', function (e) {
+            // 在这里实现你想做的其他操作
+            var $this = $(this).find('.layui-input-block').children();
+            var id = $this.attr('id');
+            var title = $(this).find('.layui-form-label').text();
+            var placeholder = $this.attr('placeholder')
+            $('#id').val(id);
+            $("#title").val(title);
+            $('#placeholder').val(placeholder);
+            var optionList = getOptionList();
+            console.log(optionList);
+            if(optionList.length > 0){
+                loadTable(optionList);
+            }
+        });
+    }
+
+    //操作栏edit
+    function Edit() {
+        //修改id
+        $('#id').on('input propertychange', function (e) {
+            var $target = $('.focus').find('.layui-input-block').children();
+            var id = $target.attr('id');
+            $('#' + id).attr('name', $(this).val());
+            $('#' + id).attr('id', $(this).val());
+        });
+        //修改label
+        $('#title').on('input propertychange', function (e) {
+            var $target = $('.focus').find('.layui-form-label');
+            var newTitle = $(this).val();
+            $target.text(newTitle);
+        });
+        //修改placeholder
+        $('#placeholder').on('input propertychange', function (e) {
+            var $target = $('.focus').find('.layui-input-block').children();
+            var newPlaceholder = $(this).val();
+            $target.attr('placeholder', newPlaceholder);
+        });
+        //修改默认值
+        $('#defaultValue').on('input propertychange', function (e) {
+            var $target = $('.focus').find('.layui-input-block').children();
+            var newVal = $(this).val();
+            $target.attr('value', newVal);
+        });
+        //修改option的文本
+    }
+
+    // 获取右侧操作栏路径
+    function getLoadPath(ele) {
+        var $target = $(ele).find('.layui-input-block').children();
+        console.log($target.prop('tagName'), $target.attr('type'));
+        var tagName = $target.prop('tagName').toLowerCase();
+        if (tagName == 'input') {
+            var type = $target.attr('type').toLowerCase();
+            if (type != 'text' && type != 'password') {
+                return plugins[type];
+            } else {
+                return plugins[tagName];
+            }
+        } else {
+            return plugins[tagName];
+        }
+    }
+
+    //获取option的value和值
+    function getOptionList(){
+        var list = [];
+        $('#' + $('#id').val() + ' option').each(function(){
+            var value = $(this).val();     // 获取 option 元素的值
+            var text = $(this).text();    // 获取 option 元素的文本内容
+            list.push({value: value, text: text})
+        });
+        return list;
+    }
+</script>
+
+</html>

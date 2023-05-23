@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=11">
+<html>
+<head>
+    <title>Export to Excel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>18</td>
+            <td>男</td>
+        </tr>
+        <tr>
+            <td>李四</td>
+            <td>20</td>
+            <td>女</td>
+        </tr>
+        <tr>
+            <td>王五</td>
+            <td>22</td>
+            <td>男</td>
+        </tr>
+    </table>
+
+    <button onclick="exportToExcel()">导出到Excel</button>
+
+    <script>
+        function exportToExcel() {
+            // 获取表格元素
+            const table = document.getElementById('myTable');
+
+            // 将表格数据转换为工作表数据
+            const worksheet = XLSX.utils.table_to_sheet(table);
+
+            // 创建一个工作簿
+            const workbook = XLSX.utils.book_new();
+
+            // 将工作表添加到工作簿中
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+            // 导出工作簿到文件
+            XLSX.writeFile(workbook, 'output.xlsx');
+        }
+    </script>
+</body>
+</html>
