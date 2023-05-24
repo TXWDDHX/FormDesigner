@@ -346,40 +346,51 @@
             $('#placeholder').val(placeholder);
             var optionList = getOptionList();
             console.log(optionList);
-            if(optionList.length > 0){
+            console.log($(this).find('select'));
+            if($(this).find('select').length > 0){
                 loadTable(optionList);
             }
         });
     }
 
-    //操作栏edit
+    //操作栏edit，更改操作栏的值同时修改左侧view里对应控件的值
     function Edit() {
         //修改id
-        $('#id').on('input propertychange', function (e) {
+        $('#operateBox').on('input propertychange', '#id',function (e) {
             var $target = $('.focus').find('.layui-input-block').children();
             var id = $target.attr('id');
-            $('#' + id).attr('name', $(this).val());
-            $('#' + id).attr('id', $(this).val());
+            updateAttribute('#' + id, 'name', $(this).val());
+            updateAttribute('#' + id, 'id', $(this).val())
         });
         //修改label
-        $('#title').on('input propertychange', function (e) {
-            var $target = $('.focus').find('.layui-form-label');
-            var newTitle = $(this).val();
-            $target.text(newTitle);
+        $('#operateBox').on('input propertychange', '#title', function (e) {
+            updateAttribute('.focus .layui-form-label', 'text', $(this).val());
         });
         //修改placeholder
-        $('#placeholder').on('input propertychange', function (e) {
-            var $target = $('.focus').find('.layui-input-block').children();
-            var newPlaceholder = $(this).val();
-            $target.attr('placeholder', newPlaceholder);
+        $('#operateBox').on('input propertychange', '#placeholder', function (e) {
+            updateAttribute('.focus .layui-input-block :input', 'placeholder', $(this).val());
         });
         //修改默认值
-        $('#defaultValue').on('input propertychange', function (e) {
-            var $target = $('.focus').find('.layui-input-block').children();
-            var newVal = $(this).val();
-            $target.attr('value', newVal);
+        $('#operateBox').on('input propertychange', '#defaultValue', function (e) {
+            updateAttribute('.focus .layui-input-block :input', 'value', $(this).val());
         });
         //修改option的文本
+    }
+
+    /**
+     * @description: 
+     * @param {*} selector 选择器
+     * @param {*} attribute 设置属性
+     * @param {*} value 值
+     * @return {*}
+     */    
+    function updateAttribute(selector, attribute, value){
+        var $target = $(selector);
+        if(attribute === 'text'){
+            $target.text(value);
+        }else{
+            $target.attr(attribute, value);
+        }
     }
 
     // 获取右侧操作栏路径
